@@ -7,6 +7,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by wzy on 16-1-31.
@@ -16,7 +17,7 @@ public class ShakeDetector implements SensorEventListener{
 
     private Context mContext;
     private SensorManager mSensorManager;
-    private ArrayList<OnShakeListener> shakeListeners;
+    private ArrayList<OnShakeListener> mShakeListeners;
 
     private int shakeThreshold = 800;
     private boolean stopShake = false;
@@ -29,7 +30,7 @@ public class ShakeDetector implements SensorEventListener{
         this.mContext = context;
         this.shakeThreshold = shakeThreshold;
         this.mSensorManager = (SensorManager) mContext.getSystemService(Context.SENSOR_SERVICE);
-        this.shakeListeners = new ArrayList<>();
+        this.mShakeListeners = new ArrayList<>();
     }
 
     public boolean start() {
@@ -57,13 +58,14 @@ public class ShakeDetector implements SensorEventListener{
     public void onSensorChanged(SensorEvent event) {
         long currentUpdateTime = System.currentTimeMillis();
         long timeInterval = currentUpdateTime - mLastUpdateTime;
-        if (timeInterval < UPDATE_INTERVAL_TIME) return;
+        if (timeInterval < UPDATE_INTERVAL_TIME) {
+            return;
+        }
 
         float dx, dy, dz;
         double distance;
 
         do {
-
             mLastUpdateTime = currentUpdateTime;
 
             // 获取x、y、z的坐标
@@ -82,12 +84,33 @@ public class ShakeDetector implements SensorEventListener{
             mLastZ = z;
 
             distance = Math.sqrt(dx * dx + dy * dy + dz * dz);
-        } while (Math.sqrt(distance) / (timeInterval * 10000.0f) < shakeThreshold || !this.stopShake)
+        } while (Math.sqrt(distance) / (timeInterval * 10000.0f) < shakeThreshold
+                || !this.stopShake);
+        notifyListeners();
     }
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
+    }
+
+
+    private void notifyListeners() {
+        Iterator localIterator = mShakeListeners.iterator();
+        while (localIterator.hasNext()) {
+            ((OnShakeListener)localIterator.next()).onShake();
+        }
+    }
+
+    public void registerOnShakeListener(OnShakeListener onShakeListener) {
+        if (mShakeListeners.contains(onShakeListener)) {
+            return;
+        }
+        mShakeListeners.add(onShakeListener);
+    }
+
+    public void unregisterOnShakeListener(OnShakeListener onShakeListener) {
+        mShakeListeners.remove(onShakeListener);
     }
 
     public interface OnShakeListener {

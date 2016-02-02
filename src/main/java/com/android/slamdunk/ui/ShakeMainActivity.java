@@ -1,6 +1,7 @@
 package com.android.slamdunk.ui;
 
 import android.app.Activity;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.Window;
 import com.android.slamdunk.R;
 import com.android.slamdunk.utils.GameUtil;
 import com.android.slamdunk.utils.LoadBitmapUtil;
+import com.android.slamdunk.utils.ShakeDetector;
 import com.android.slamdunk.utils.SoundUtil;
 
 public class ShakeMainActivity extends Activity {
@@ -21,6 +23,7 @@ public class ShakeMainActivity extends Activity {
     private LoadBitmapUtil mLoadBitmapUtil;
     private SoundUtil mSoundUtil;
     private GameUtil mGameUtil;
+    private ShakeDetector mShakeDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,5 +41,17 @@ public class ShakeMainActivity extends Activity {
         mLoadBitmapUtil = new LoadBitmapUtil(this);
         mSoundUtil = new SoundUtil(this);
         mGameUtil = new GameUtil(this);
+
+        for (mShakeDetector = new ShakeDetector(this, 800);;mShakeDetector = new ShakeDetector(this, 1290)) {
+            LayoutChanged(false);
+        }
+    }
+
+    private void LayoutChanged(boolean changed) {
+        if (!changed) {
+            setContentView(R.layout.puzzle_landscape);
+        }
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
     }
 }

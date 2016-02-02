@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ff383838"
+    android:orientation="vertical">
+
+    <!-- header -->
+    <FrameLayout
+        android:id="@+id/FrameLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/title_bg">
+
+        <ImageView
+            android:id="@+id/title_pic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/title_logo"
+            android:contentDescription="@null"/>
+
+        <LinearLayout
+            android:id="@+id/count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|end"
+            android:clickable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingEnd="15dp"
+                android:paddingTop="10dp"
+                android:src="@drawable/change_orientation"
+                android:contentDescription="@null"/>
+        </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/im"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter"
+            android:visibility="gone"
+            android:contentDescription="@null"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:id="@+id/linearyao"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1.0">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/oneimage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.0"
+                        android:contentDescription="@null"/>
+
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.0"
+                        android:background="@drawable/imageleft"
+                        android:contentDescription="@null"/>
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_gravity="center"
+                    android:id="@+id/image1"
+                    android:paddingTop="15dp"
+                    android:src="@drawable/yaoyiyaoshu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@null"/>
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/linearyaobutton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1.0">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:id="@+id/upline"
+                        android:background="@drawable/imageright"
+                        android:layout_width="15dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.0"
+                        android:contentDescription="@null"/>
+                    <ImageView
+                        android:id="@+id/twoimage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.0"
+                        android:contentDescription="@null"/>
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_gravity="center"
+                    android:id="@+id/image2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/bu_press_selector"
+                    android:contentDescription="@null"/>
+            </FrameLayout>
+
+            <ImageView
+                android:layout_gravity="center|start"
+                android:id="@+id/image3"
+                android:layout_marginStart="15dp"
+                android:src="@drawable/yaoyiyaoshu1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@null"/>
+            <ImageView
+                android:layout_gravity="center|end"
+                android:id="@+id/image4"
+                android:layout_marginEnd="30dp"
+                android:src="@drawable/bu_press_selector"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@null"/>
+            <ImageView
+                android:layout_gravity="center|end|bottom"
+                android:id="@+id/image5"
+                android:layout_marginEnd="15dp"
+                android:src="@drawable/about_press_selector"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@null"/>
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>
